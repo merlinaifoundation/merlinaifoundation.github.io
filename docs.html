@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merlin AI Foundation - Documentation</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0c2340;
+      --secondary-color: #09203c;
+      --background-color: #f0f4f8;
+      --text-color: #1a365d;
+      --sidebar-bg: #f1f5f9;
+      --sidebar-hover: #e2e8f0;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: var(--sidebar-bg);
+      padding: 2rem 1rem;
+      border-right: 1px solid #e2e8f0;
+      overflow-y: auto;
+    }
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+    .sidebar-logo img {
+      width: 40px;
+      margin-right: 10px;
+    }
+    .sidebar-logo h2 {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+    }
+    .sidebar-nav {
+      list-style: none;
+    }
+    .sidebar-nav li {
+      margin-bottom: 0.5rem;
+    }
+    .sidebar-nav > li > a {
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    .sidebar-nav > li > a:hover {
+      background-color: var(--sidebar-hover);
+    }
+    .sidebar-nav > li > a.active {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    .sidebar-nav > li > a .toggle-icon {
+      transition: transform 0.3s ease;
+    }
+    .sidebar-nav > li > a.expanded .toggle-icon {
+      transform: rotate(90deg);
+    }
+    .sidebar-nav .submenu {
+      display: none;
+      background-color: #f8fafc;
+      border-radius: 8px;
+      margin: 0.5rem 0 0.5rem 1rem;
+      padding: 0.5rem 0;
+    }
+    .sidebar-nav .submenu li a {
+      display: block;
+      padding: 0.25rem 1rem;
+      text-decoration: none;
+      color: var(--text-color);
+      transition: background-color 0.3s ease;
+    }
+    .sidebar-nav .submenu li a:hover {
+      background-color: var(--sidebar-hover);
+    }
+    .sidebar-nav .submenu.show {
+      display: block;
+    }
+    .content {
+      flex-grow: 1;
+      padding: 2rem;
+      background-color: white;
+      overflow-y: auto;
+      max-width: calc(100% - 250px);
+    }
+    .content-header {
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    .content h1 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    .content p {
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .content {
+        max-width: 100%;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <img src="logo.png" alt="Merlin AI Foundation">
+      <h2>Documentation</h2>
+    </div>
+    <ul class="sidebar-nav">
+      <li>
+        <a href="#getting-started" class="active">
+          Getting Started
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#project-overview">Project Overview</a></li>
+          <li><a href="#quickstart">Quickstart Guide</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#installation">
+          Installation
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="#prerequisites">Prerequisites</a></li>
+          <li><a href="#package-managers">Package Managers</a></li>
+          <li><a href="#docker">Docker Setup</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#core-concepts">
+          Core Concepts
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="#agents">Agents</a></li>
+          <li><a href="#decentralization">Decentralization</a></li>
+          <li><a href="#architecture">Architecture</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#api-reference">
+          API Reference
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="#core-classes">Core Classes</a></li>
+          <li><a href="#methods">Methods</a></li>
+          <li><a href="#utilities">Utilities</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#contributing">
+          Contributing
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="#development-setup">Development Setup</a></li>
+          <li><a href="#submit-pr">Submit a PR</a></li>
+          <li><a href="#code-of-conduct">Code of Conduct</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="content-header">
+      <h1>Getting Started with Merlin AI Foundation</h1>
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc eget ultricies tincidunt, velit velit bibendum velit, vel bibendum sapien nunc vel lectus.</p>
+    
+    <h2>What is Merlin AI Foundation?</h2>
+    <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum.</p>
+    
+    <h2>Key Features</h2>
+    <ul>
+      <li>Decentralized AI agents</li>
+      <li>Open-source infrastructure</li>
+      <li>Scalable and flexible architecture</li>
+    </ul>
+    
+    <h2>Quick Example</h2>
+    <pre><code>
+# Pseudo-code example
+from merlin_ai import Agent
+
+agent = Agent.create()
+result = agent.process_task("Solve complex problem")
+    </code></pre>
+    
+    <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuItems = document.querySelectorAll('.sidebar-nav > li > a');
+      
+      menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          // Toggle active class
+          menuItems.forEach(mi => mi.classList.remove('active'));
+          item.classList.add('active');
+          
+          // Toggle submenu
+          const submenu = item.nextElementSibling;
+          const isExpanded = item.classList.contains('expanded');
+          
+          // Close all submenus
+          document.querySelectorAll('.submenu').forEach(sm => sm.classList.remove('show'));
+          document.querySelectorAll('.sidebar-nav > li > a').forEach(a => a.classList.remove('expanded'));
+          
+          // Open clicked submenu if it was not already open
+          if (!isExpanded) {
+            submenu.classList.add('show');
+            item.classList.add('expanded');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

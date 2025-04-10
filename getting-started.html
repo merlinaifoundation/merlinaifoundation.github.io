@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started - Merlin AI Foundation</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0c2340;
+      --secondary-color: #09203c;
+      --background-color: #f0f4f8;
+      --text-color: #1a365d;
+      --sidebar-bg: #f1f5f9;
+      --sidebar-hover: #e2e8f0;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: var(--sidebar-bg);
+      padding: 2rem 1rem;
+      border-right: 1px solid #e2e8f0;
+      overflow-y: auto;
+    }
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+    .sidebar-logo img {
+      width: 40px;
+      margin-right: 10px;
+    }
+    .sidebar-logo h2 {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+    }
+    .sidebar-nav {
+      list-style: none;
+    }
+    .sidebar-nav li {
+      margin-bottom: 0.5rem;
+    }
+    .sidebar-nav > li > a {
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    .sidebar-nav > li > a:hover {
+      background-color: var(--sidebar-hover);
+    }
+    .sidebar-nav > li > a.active {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    .sidebar-nav > li > a .toggle-icon {
+      transition: transform 0.3s ease;
+    }
+    .sidebar-nav > li > a.expanded .toggle-icon {
+      transform: rotate(90deg);
+    }
+    .sidebar-nav .submenu {
+      display: none;
+      background-color: #f8fafc;
+      border-radius: 8px;
+      margin: 0.5rem 0 0.5rem 1rem;
+      padding: 0.5rem 0;
+    }
+    .sidebar-nav .submenu li a {
+      display: block;
+      padding: 0.25rem 1rem;
+      text-decoration: none;
+      color: var(--text-color);
+      transition: background-color 0.3s ease;
+    }
+    .sidebar-nav .submenu li a:hover {
+      background-color: var(--sidebar-hover);
+    }
+    .sidebar-nav .submenu.show {
+      display: block;
+    }
+    .content {
+      flex-grow: 1;
+      padding: 2rem;
+      background-color: white;
+      overflow-y: auto;
+      max-width: calc(100% - 250px);
+    }
+    .content-header {
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    .content h1, .content h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    .content p, .content ul {
+      margin-bottom: 1rem;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .content {
+        max-width: 100%;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <img src="logo.png" alt="Merlin AI Foundation">
+      <h2>Documentation</h2>
+    </div>
+    <ul class="sidebar-nav">
+      <li>
+        <a href="#introduction" class="active">
+          Introduction
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu show">
+          <li><a href="#what-is-merlin">What is Merlin</a></li>
+          <li><a href="#key-concepts">Key Concepts</a></li>
+          <li><a href="#use-cases">Use Cases</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#quickstart">
+          Quickstart
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="#basic-setup">Basic Setup</a></li>
+          <li><a href="#first-agent">Create First Agent</a></li>
+          <li><a href="#hello-world">Hello World Example</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="installation.html">
+          Installation
+          <i class="fas fa-link"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="content-header">
+      <h1>Getting Started with Merlin AI Foundation</h1>
+    </div>
+
+    <section id="what-is-merlin">
+      <h2>What is Merlin AI Foundation?</h2>
+      <p>Merlin AI Foundation is an open-source platform for creating decentralized, autonomous AI agents. Our mission is to democratize AI development and provide flexible, scalable infrastructure for intelligent systems.</p>
+    </section>
+
+    <section id="key-concepts">
+      <h2>Key Concepts</h2>
+      <ul>
+        <li><strong>Decentralization:</strong> Agents can operate independently across distributed networks</li>
+        <li><strong>Autonomy:</strong> Self-directed decision making and task completion</li>
+        <li><strong>Interoperability:</strong> Seamless integration with various platforms and technologies</li>
+      </ul>
+    </section>
+
+    <section id="use-cases">
+      <h2>Use Cases</h2>
+      <p>Merlin AI agents can be applied in various domains:</p>
+      <ul>
+        <li>Automated research and data analysis</li>
+        <li>Intelligent process automation</li>
+        <li>Complex problem solving</li>
+        <li>Adaptive learning systems</li>
+      </ul>
+    </section>
+
+    <section id="basic-setup">
+      <h2>Basic Setup</h2>
+      <pre><code>
+# Install Merlin AI Foundation
+pip install merlin-ai
+
+# Import the core module
+from merlin_ai import Agent
+
+# Create your first agent
+my_agent = Agent.create()
+      </code></pre>
+    </section>
+
+    <section id="first-agent">
+      <h2>Create Your First Agent</h2>
+      <p>Agents in Merlin are flexible, intelligent entities that can be customized for specific tasks.</p>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuItems = document.querySelectorAll('.sidebar-nav > li > a');
+      
+      menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          menuItems.forEach(mi => mi.classList.remove('active'));
+          item.classList.add('active');
+          
+          const submenu = item.nextElementSibling;
+          const isExpanded = item.classList.contains('expanded');
+          
+          document.querySelectorAll('.submenu').forEach(sm => sm.classList.remove('show'));
+          document.querySelectorAll('.sidebar-nav > li > a').forEach(a => a.classList.remove('expanded'));
+          
+          if (!isExpanded) {
+            submenu.classList.add('show');
+            item.classList.add('expanded');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

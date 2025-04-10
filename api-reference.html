@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Reference - Merlin AI Foundation</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Same CSS as previous docs */
+    :root {
+      --primary-color: #0c2340;
+      --secondary-color: #09203c;
+      --background-color: #f0f4f8;
+      --text-color: #1a365d;
+      --sidebar-bg: #f1f5f9;
+      --sidebar-hover: #e2e8f0;
+    }
+    /* [Rest of previous CSS] */
+    pre {
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <img src="logo.png" alt="Merlin AI Foundation">
+      <h2>Documentation</h2>
+    </div>
+    <ul class="sidebar-nav">
+      <li>
+        <a href="#core-classes" class="active">
+          Core Classes
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu show">
+          <li><a href="#agent-class">Agent</a></li>
+          <li><a href="#network-class">Network</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#methods">
+          Methods
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="#create-method">create()</a></li>
+          <li><a href="#process-method">process()</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="content-header">
+      <h1>API Reference</h1>
+    </div>
+
+    <section id="agent-class">
+      <h2>Agent Class</h2>
+      <pre><code>
+class Agent:
+    def __init__(self, name: str, capabilities: List[str]):
+        """Initialize a new AI agent"""
+        pass
+
+    def create(self, config: Dict) -> Agent:
+        """Factory method to create an agent"""
+        pass
+      </code></pre>
+    </section>
+
+    <section id="network-class">
+      <h2>Network Class</h2>
+      <pre><code>
+class Network:
+    def __init__(self, nodes: List[Agent]):
+        """Initialize a distributed network of agents"""
+        pass
+
+    def connect(self, agent: Agent):
+        """Connect a new agent to the network"""
+        pass
+      </code></pre>
+    </section>
+
+    <section id="create-method">
+      <h2>create() Method</h2>
+      <p>Creates a new agent with specified capabilities and configuration.</p>
+      <pre><code>
+# Example usage
+agent = Agent.create({
+    'name': 'ResearchBot',
+    'capabilities': ['data_analysis', 'web_search']
+})
+      </code></pre>
+    </section>
+  </div>
+
+  <script>
+    // Same JavaScript as previous docs
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuItems = document.querySelectorAll('.sidebar-nav > li > a');
+      
+      menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          menuItems.forEach(mi => mi.classList.remove('active'));
+          item.classList.add('active');
+          
+          const submenu = item.nextElementSibling;
+          const isExpanded = item.classList.contains('expanded');
+          
+          document.querySelectorAll('.submenu').forEach(sm => sm.classList.remove('show'));
+          document.querySelectorAll('.sidebar-nav > li > a').forEach(a => a.classList.remove('expanded'));
+          
+          if (!isExpanded) {
+            submenu.classList.add('show');
+            item.classList.add('expanded');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contributing - Merlin AI Foundation</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Same CSS as previous docs */
+    :root {
+      --primary-color: #0c2340;
+      --secondary-color: #09203c;
+      --background-color: #f0f4f8;
+      --text-color: #1a365d;
+      --sidebar-bg: #f1f5f9;
+      --sidebar-hover: #e2e8f0;
+    }
+    /* [Rest of previous CSS] */
+    pre {
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <img src="logo.png" alt="Merlin AI Foundation">
+      <h2>Documentation</h2>
+    </div>
+    <ul class="sidebar-nav">
+      <li>
+        <a href="#development-setup" class="active">
+          Development Setup
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu show">
+          <li><a href="#local-setup">Local Environment</a></li>
+          <li><a href="#dependencies">Dependencies</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#submit-pr">
+          Submit a PR
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="#pr-guidelines">PR Guidelines</a></li>
+          <li><a href="#review-process">Review Process</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="content-header">
+      <h1>Contributing to Merlin AI</h1>
+    </div>
+
+    <section id="local-setup">
+      <h2>Local Development Setup</h2>
+      <pre><code>
+# Clone the repository
+git clone https://github.com/merlinaifoundation/core.git
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate
+
+# Install development dependencies
+pip install -r requirements-dev.txt
+      </code></pre>
+    </section>
+
+    <section id="dependencies">
+      <h2>Managing Dependencies</h2>
+      <p>We use Poetry for dependency management. Ensure you have Poetry installed:</p>
+      <pre><code>
+# Install dependencies
+poetry install
+
+# Add a new dependency
+poetry add new-library
+      </code></pre>
+    </section>
+
+    <section id="pr-guidelines">
+      <h2>Pull Request Guidelines</h2>
+      <ul>
+        <li>Fork the repository</li>
+        <li>Create a feature branch</li>
+        <li>Write tests for new features</li>
+        <li>Ensure all tests pass</li>
+        <li>Update documentation</li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    // Same JavaScript as previous docs
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuItems = document.querySelectorAll('.sidebar-nav > li > a');
+      
+      menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          menuItems.forEach(mi => mi.classList.remove('active'));
+          item.classList.add('active');
+          
+          const submenu = item.nextElementSibling;
+          const isExpanded = item.classList.contains('expanded');
+          
+          document.querySelectorAll('.submenu').forEach(sm => sm.classList.remove('show'));
+          document.querySelectorAll('.sidebar-nav > li > a').forEach(a => a.classList.remove('expanded'));
+          
+          if (!isExpanded) {
+            submenu.classList.add('show');
+            item.classList.add('expanded');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Core Concepts - Merlin AI Foundation</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Same CSS as previous docs */
+    :root {
+      --primary-color: #0c2340;
+      --secondary-color: #09203c;
+      --background-color: #f0f4f8;
+      --text-color: #1a365d;
+      --sidebar-bg: #f1f5f9;
+      --sidebar-hover: #e2e8f0;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      display: flex;
+      min-height: 100vh;
+    }
+    /* [Rest of previous CSS] */
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <img src="logo.png" alt="Merlin AI Foundation">
+      <h2>Documentation</h2>
+    </div>
+    <ul class="sidebar-nav">
+      <li>
+        <a href="#agents" class="active">
+          AI Agents
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu show">
+          <li><a href="#agent-definition">What are Agents</a></li>
+          <li><a href="#agent-capabilities">Agent Capabilities</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#decentralization">
+          Decentralization
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="#distributed-network">Distributed Network</a></li>
+          <li><a href="#consensus-mechanisms">Consensus Mechanisms</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#architecture">
+          Architecture
+          <i class="fas fa-chevron-right toggle-icon"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="#system-design">System Design</a></li>
+          <li><a href="#scalability">Scalability</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="content-header">
+      <h1>Core Concepts of Merlin AI</h1>
+    </div>
+
+    <section id="agent-definition">
+      <h2>What are AI Agents?</h2>
+      <p>In Merlin AI, agents are autonomous, intelligent entities capable of perceiving their environment, making decisions, and taking actions to achieve specific goals.</p>
+    </section>
+
+    <section id="agent-capabilities">
+      <h2>Agent Capabilities</h2>
+      <ul>
+        <li>Self-directed learning</li>
+        <li>Adaptive problem solving</li>
+        <li>Multi-task execution</li>
+        <li>Cross-platform integration</li>
+      </ul>
+    </section>
+
+    <section id="distributed-network">
+      <h2>Distributed Network</h2>
+      <p>Merlin's decentralized architecture allows agents to operate across multiple nodes, ensuring resilience, scalability, and reduced single points of failure.</p>
+    </section>
+
+    <section id="consensus-mechanisms">
+      <h2>Consensus Mechanisms</h2>
+      <p>Agents communicate and validate actions through sophisticated consensus protocols, ensuring reliable and trustworthy decision-making.</p>
+    </section>
+  </div>
+
+  <script>
+    // Same JavaScript as previous docs
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuItems = document.querySelectorAll('.sidebar-nav > li > a');
+      
+      menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          menuItems.forEach(mi => mi.classList.remove('active'));
+          item.classList.add('active');
+          
+          const submenu = item.nextElementSibling;
+          const isExpanded = item.classList.contains('expanded');
+          
+          document.querySelectorAll('.submenu').forEach(sm => sm.classList.remove('show'));
+          document.querySelectorAll('.sidebar-nav > li > a').forEach(a => a.classList.remove('expanded'));
+          
+          if (!isExpanded) {
+            submenu.classList.add('show');
+            item.classList.add('expanded');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
