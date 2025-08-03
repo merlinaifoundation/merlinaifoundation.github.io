@@ -3,37 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Getting Started - Merlin AI Foundation</title>
+  <title>Quickstart - Merlin AI Foundation</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary-color: #0c2340;
-      --secondary-color: #09203c;
-      --background-color: #f0f4f8;
+      --secondary-color: #4a90e2;
+      --background-color: #f7fafc;
       --text-color: #1a365d;
       --sidebar-bg: #f1f5f9;
       --sidebar-hover: #e2e8f0;
+      --radius: 16px;
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       font-family: 'Inter', Arial, sans-serif;
       line-height: 1.6;
       color: var(--text-color);
       display: flex;
       min-height: 100vh;
+      background: var(--background-color);
+      margin: 0;
     }
     .sidebar {
-      width: 250px;
+      width: 270px;
       background-color: var(--sidebar-bg);
       padding: 2rem 1rem;
       border-right: 1px solid #e2e8f0;
       overflow-y: auto;
+      min-height: 100vh;
     }
     .sidebar-logo {
       display: flex;
@@ -48,208 +48,129 @@
     .sidebar-logo h2 {
       font-size: 1.2rem;
       color: var(--primary-color);
+      font-weight: 800;
     }
     .sidebar-nav {
       list-style: none;
+      padding: 0;
+      margin: 0;
     }
     .sidebar-nav li {
       margin-bottom: 0.5rem;
     }
-    .sidebar-nav > li > a {
+    .sidebar-nav a {
       text-decoration: none;
       color: var(--text-color);
       padding: 0.5rem 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
-    }
-    .sidebar-nav > li > a:hover {
-      background-color: var(--sidebar-hover);
-    }
-    .sidebar-nav > li > a.active {
-      background-color: var(--primary-color);
-      color: white;
-    }
-    .sidebar-nav > li > a .toggle-icon {
-      transition: transform 0.3s ease;
-    }
-    .sidebar-nav > li > a.expanded .toggle-icon {
-      transform: rotate(90deg);
-    }
-    .sidebar-nav .submenu {
-      display: none;
-      background-color: #f8fafc;
-      border-radius: 8px;
-      margin: 0.5rem 0 0.5rem 1rem;
-      padding: 0.5rem 0;
-    }
-    .sidebar-nav .submenu li a {
       display: block;
-      padding: 0.25rem 1rem;
-      text-decoration: none;
-      color: var(--text-color);
-      transition: background-color 0.3s ease;
+      border-radius: 8px;
+      transition: background-color 0.2s;
+      font-weight: 600;
     }
-    .sidebar-nav .submenu li a:hover {
+    .sidebar-nav a:hover, .sidebar-nav a.active {
       background-color: var(--sidebar-hover);
-    }
-    .sidebar-nav .submenu.show {
-      display: block;
+      color: var(--primary-color);
     }
     .content {
       flex-grow: 1;
-      padding: 2rem;
+      padding: 2.5rem 2rem;
       background-color: white;
       overflow-y: auto;
-      max-width: calc(100% - 250px);
+      max-width: calc(100% - 270px);
+      min-height: 100vh;
     }
-    .content-header {
-      border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 1rem;
-      margin-bottom: 2rem;
-    }
-    .content h1, .content h2 {
+    .content h1, .content h2, .content h3 {
       color: var(--primary-color);
+      margin-top: 2rem;
       margin-bottom: 1rem;
+      font-weight: 800;
     }
-    .content p, .content ul {
-      margin-bottom: 1rem;
+    .content h1 { font-size: 2.1rem; }
+    .content h2 { font-size: 1.4rem; }
+    .content h3 { font-size: 1.1rem; }
+    .content ul, .content ol {
+      margin-bottom: 1.2rem;
+      margin-left: 1.5rem;
     }
-    pre {
-      background-color: #f4f4f4;
-      padding: 1rem;
+    .content pre, .content code {
+      background: #f4f4f4;
+      color: #0c2340;
       border-radius: 8px;
+      padding: 0.5em 0.8em;
+      font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+      font-size: 1em;
       overflow-x: auto;
     }
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
-      .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #e2e8f0;
-      }
-      .content {
-        max-width: 100%;
-        padding: 1rem;
-      }
+    .content pre {
+      padding: 1em;
+      margin-bottom: 1.5em;
+    }
+    .content a {
+      color: var(--secondary-color);
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .content a:hover {
+      color: var(--primary-color);
+    }
+    @media (max-width: 900px) {
+      .sidebar { width: 100%; min-height: unset; border-right: none; border-bottom: 1px solid #e2e8f0; }
+      .content { max-width: 100%; padding: 1.2rem 0.5rem; }
+      body { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
+  <nav class="sidebar">
     <div class="sidebar-logo">
       <img src="logo.png" alt="Merlin AI Foundation">
-      <h2>Documentation</h2>
+      <h2>Docs</h2>
     </div>
     <ul class="sidebar-nav">
-      <li>
-        <a href="#introduction" class="active">
-          Introduction
-          <i class="fas fa-chevron-right toggle-icon"></i>
-        </a>
-        <ul class="submenu show">
-          <li><a href="#what-is-merlin">What is Merlin</a></li>
-          <li><a href="#key-concepts">Key Concepts</a></li>
-          <li><a href="#use-cases">Use Cases</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#quickstart">
-          Quickstart
-          <i class="fas fa-chevron-right toggle-icon"></i>
-        </a>
-        <ul class="submenu">
-          <li><a href="#basic-setup">Basic Setup</a></li>
-          <li><a href="#first-agent">Create First Agent</a></li>
-          <li><a href="#hello-world">Hello World Example</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="installation.html">
-          Installation
-          <i class="fas fa-link"></i>
-        </a>
-      </li>
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="docs.html">Overview</a></li>
+      <li><a href="installation.html">Installation</a></li>
+      <li><a href="getting-started.html" class="active">Quickstart</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="core-concepts.html">Configuration</a></li>
+      <li><a href="core-concepts.html#docker">Docker Setup</a></li>
+      <li><a href="core-concepts.html#usage">Usage Examples</a></li>
+      <li><a href="core-concepts.html#testing">Testing</a></li>
+      <li><a href="core-concepts.html#faq">FAQ</a></li>
+      <li><a href="contributing.html">Contributing</a></li>
+      <li><a href="core-concepts.html#changelog">Changelog</a></li>
     </ul>
-  </div>
-  <div class="content">
-    <div class="content-header">
-      <h1>Getting Started with Merlin AI Foundation</h1>
-    </div>
+  </nav>
+  <main class="content">
+    <h1>Quickstart</h1>
+    <p>Get up and running with cua-sdk in minutes!</p>
+    <h2>1. Install the SDK</h2>
+    <p>Follow the <a href="installation.html">Installation</a> guide to set up your environment.</p>
+    <h2>2. Minimal Working Example</h2>
+    <p>Create a file named <code>main.py</code>:</p>
+    <pre><code>from cua_sdk import ComputerAgent
 
-    <section id="what-is-merlin">
-      <h2>What is Merlin AI Foundation?</h2>
-      <p>Merlin AI Foundation is an open-source platform for creating decentralized, autonomous AI agents. Our mission is to democratize AI development and provide flexible, scalable infrastructure for intelligent systems.</p>
-    </section>
+# Instantiate an agent
+agent = ComputerAgent()
 
-    <section id="key-concepts">
-      <h2>Key Concepts</h2>
-      <ul>
-        <li><strong>Decentralization:</strong> Agents can operate independently across distributed networks</li>
-        <li><strong>Autonomy:</strong> Self-directed decision making and task completion</li>
-        <li><strong>Interoperability:</strong> Seamless integration with various platforms and technologies</li>
-      </ul>
-    </section>
+# Run a simple task
+result = agent.run_task("Open Notepad and type 'Hello, world!'")
+print(result)
+</code></pre>
+    <h2>3. Run Your Script</h2>
+    <pre><code>python main.py
+</code></pre>
+    <h2>4. Using Multiple Agents</h2>
+    <pre><code>from cua_sdk import ComputerAgent
 
-    <section id="use-cases">
-      <h2>Use Cases</h2>
-      <p>Merlin AI agents can be applied in various domains:</p>
-      <ul>
-        <li>Automated research and data analysis</li>
-        <li>Intelligent process automation</li>
-        <li>Complex problem solving</li>
-        <li>Adaptive learning systems</li>
-      </ul>
-    </section>
-
-    <section id="basic-setup">
-      <h2>Basic Setup</h2>
-      <pre><code>
-# Install Merlin AI Foundation
-pip install merlin-ai
-
-# Import the core module
-from merlin_ai import Agent
-
-# Create your first agent
-my_agent = Agent.create()
-      </code></pre>
-    </section>
-
-    <section id="first-agent">
-      <h2>Create Your First Agent</h2>
-      <p>Agents in Merlin are flexible, intelligent entities that can be customized for specific tasks.</p>
-    </section>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuItems = document.querySelectorAll('.sidebar-nav > li > a');
-      
-      menuItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          e.preventDefault();
-          
-          menuItems.forEach(mi => mi.classList.remove('active'));
-          item.classList.add('active');
-          
-          const submenu = item.nextElementSibling;
-          const isExpanded = item.classList.contains('expanded');
-          
-          document.querySelectorAll('.submenu').forEach(sm => sm.classList.remove('show'));
-          document.querySelectorAll('.sidebar-nav > li > a').forEach(a => a.classList.remove('expanded'));
-          
-          if (!isExpanded) {
-            submenu.classList.add('show');
-            item.classList.add('expanded');
-          }
-        });
-      });
-    });
-  </script>
+agents = [ComputerAgent(name=f"Agent{i}") for i in range(3)]
+for agent in agents:
+    agent.run_task("Check system status")
+</code></pre>
+    <h2>5. Using Docker</h2>
+    <p>See <a href="core-concepts.html#docker">Docker Setup</a> for running agents in containers.</p>
+    <hr>
+    <p>Next: <a href="core-concepts.html">Configuration</a></p>
+  </main>
 </body>
 </html>

@@ -6,127 +6,359 @@
   <title>Core Concepts - Merlin AI Foundation</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* Same CSS as previous docs */
     :root {
       --primary-color: #0c2340;
-      --secondary-color: #09203c;
-      --background-color: #f0f4f8;
+      --secondary-color: #4a90e2;
+      --background-color: #f7fafc;
       --text-color: #1a365d;
       --sidebar-bg: #f1f5f9;
       --sidebar-hover: #e2e8f0;
+      --radius: 16px;
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       font-family: 'Inter', Arial, sans-serif;
       line-height: 1.6;
       color: var(--text-color);
       display: flex;
       min-height: 100vh;
+      background: var(--background-color);
+      margin: 0;
     }
-    /* [Rest of previous CSS] */
+    .sidebar {
+      width: 270px;
+      background-color: var(--sidebar-bg);
+      padding: 2rem 1rem;
+      border-right: 1px solid #e2e8f0;
+      overflow-y: auto;
+      min-height: 100vh;
+    }
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+    .sidebar-logo img {
+      width: 40px;
+      margin-right: 10px;
+    }
+    .sidebar-logo h2 {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      font-weight: 800;
+    }
+    .sidebar-nav {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar-nav li {
+      margin-bottom: 0.5rem;
+    }
+    .sidebar-nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 0.5rem 1rem;
+      display: block;
+      border-radius: 8px;
+      transition: background-color 0.2s;
+      font-weight: 600;
+    }
+    .sidebar-nav a:hover, .sidebar-nav a.active {
+      background-color: var(--sidebar-hover);
+      color: var(--primary-color);
+    }
+    .content {
+      flex-grow: 1;
+      padding: 2.5rem 2rem;
+      background-color: white;
+      overflow-y: auto;
+      max-width: calc(100% - 270px);
+      min-height: 100vh;
+    }
+    .content h1, .content h2, .content h3 {
+      color: var(--primary-color);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+    .content h1 { font-size: 2.1rem; }
+    .content h2 { font-size: 1.4rem; }
+    .content h3 { font-size: 1.1rem; }
+    .content ul, .content ol {
+      margin-bottom: 1.2rem;
+      margin-left: 1.5rem;
+    }
+    .content pre, .content code {
+      background: #f4f4f4;
+      color: #0c2340;
+      border-radius: 8px;
+      padding: 0.5em 0.8em;
+      font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+      font-size: 1em;
+      overflow-x: auto;
+    }
+    .content pre {
+      padding: 1em;
+      margin-bottom: 1.5em;
+    }
+    .content a {
+      color: var(--secondary-color);
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .content a:hover {
+      color: var(--primary-color);
+    }
+    @media (max-width: 900px) {
+      .sidebar { width: 100%; min-height: unset; border-right: none; border-bottom: 1px solid #e2e8f0; }
+      .content { max-width: 100%; padding: 1.2rem 0.5rem; }
+      body { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
-  <div class="sidebar">
+  <nav class="sidebar">
     <div class="sidebar-logo">
       <img src="logo.png" alt="Merlin AI Foundation">
-      <h2>Documentation</h2>
+      <h2>Docs</h2>
     </div>
     <ul class="sidebar-nav">
-      <li>
-        <a href="#agents" class="active">
-          AI Agents
-          <i class="fas fa-chevron-right toggle-icon"></i>
-        </a>
-        <ul class="submenu show">
-          <li><a href="#agent-definition">What are Agents</a></li>
-          <li><a href="#agent-capabilities">Agent Capabilities</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#decentralization">
-          Decentralization
-          <i class="fas fa-chevron-right toggle-icon"></i>
-        </a>
-        <ul class="submenu">
-          <li><a href="#distributed-network">Distributed Network</a></li>
-          <li><a href="#consensus-mechanisms">Consensus Mechanisms</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#architecture">
-          Architecture
-          <i class="fas fa-chevron-right toggle-icon"></i>
-        </a>
-        <ul class="submenu">
-          <li><a href="#system-design">System Design</a></li>
-          <li><a href="#scalability">Scalability</a></li>
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="docs.html">Overview</a></li>
+      <li><a href="installation.html">Installation</a></li>
+      <li><a href="getting-started.html">Quickstart</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="core-concepts.html" class="active">Configuration</a></li>
+      <li><a href="core-concepts.html#docker">Docker Setup</a></li>
+      <li><a href="core-concepts.html#usage">Usage Examples</a></li>
+      <li><a href="core-concepts.html#testing">Testing</a></li>
+      <li><a href="core-concepts.html#faq">FAQ</a></li>
+      <li><a href="contributing.html">Contributing</a></li>
+      <li><a href="core-concepts.html#changelog">Changelog</a></li>
+    </ul>
+  </nav>
+  <main class="content">
+    <h1>Configuration</h1>
+    <p>Configure cua-sdk to fit your needs. This guide explains all configuration parameters, how to use <code>.env</code> files, and how to customize agent behavior.</p>
+    <h2>1. Using a <code>.env</code> File</h2>
+    <p>Create a <code>.env</code> file in your project root to store configuration and secrets. The SDK uses <code>python-dotenv</code> to load these automatically.</p>
+    <pre><code>OPENAI_API_KEY=your-openai-key
+AGENT_NAME=Merlin
+AGENT_MODE=interactive
+DOCKER_IMAGE=merlin/agent:latest
+LOG_LEVEL=INFO
+</code></pre>
+    <h2>2. Configuration Parameters</h2>
+    <table>
+      <tr><th>Parameter</th><th>Description</th><th>Required</th><th>Default</th><th>Example Value</th></tr>
+      <tr><td>OPENAI_API_KEY</td><td>API key for OpenAI services</td><td>Yes</td><td>-</td><td>sk-...</td></tr>
+      <tr><td>AGENT_NAME</td><td>Default name for the agent</td><td>No</td><td>Merlin</td><td>MyAgent</td></tr>
+      <tr><td>AGENT_MODE</td><td>Agent operation mode</td><td>No</td><td>interactive</td><td>batch</td></tr>
+      <tr><td>DOCKER_IMAGE</td><td>Docker image to use for agents</td><td>No</td><td>merlin/agent:latest</td><td>custom/image:tag</td></tr>
+      <tr><td>LOG_LEVEL</td><td>Logging verbosity</td><td>No</td><td>INFO</td><td>DEBUG</td></tr>
+      <tr><td>OTHER_CONFIG</td><td>Any other supported config</td><td>No</td><td>-</td><td>...</td></tr>
+    </table>
+    <p><strong>Tip:</strong> Any environment variable in <code>.env</code> can be accessed in your code using <code>os.getenv("VAR_NAME")</code>.</p>
+    <h2>3. Loading Environment Variables</h2>
+    <p>The SDK automatically loads <code>.env</code> if present. To load manually in your script:</p>
+    <pre><code>from dotenv import load_dotenv
+load_dotenv()
+</code></pre>
+    <h2>4. Overriding Configuration</h2>
+    <p>You can override config parameters at runtime:</p>
+    <pre><code>import os
+os.environ["AGENT_NAME"] = "SuperAgent"
+</code></pre>
+    <h2 id="docker">5. Advanced Configuration: Docker Setup</h2>
+    <p>Run cua-sdk agents in isolated, reproducible Docker containers for maximum security and scalability.</p>
+    <h3>Prerequisites</h3>
+    <ul>
+      <li>Docker installed and running on your system.</li>
+    </ul>
+    <h3>Building the Docker Image</h3>
+    <pre><code>docker build -t merlin/agent:latest -f cua_docker/Dockerfile .
+</code></pre>
+    <h3>Running an Agent in Docker</h3>
+    <pre><code>docker run --rm -it \
+  --env-file .env \
+  merlin/agent:latest
+</code></pre>
+    <h3>Mounting Volumes (Optional)</h3>
+    <pre><code>docker run --rm -it \
+  --env-file .env \
+  -v $(pwd)/data:/app/data \
+  merlin/agent:latest
+</code></pre>
+    <h3>Passing Environment Variables Directly</h3>
+    <pre><code>docker run --rm -it \
+  -e OPENAI_API_KEY=your-key \
+  merlin/agent:latest
+</code></pre>
+    <h3>Running Multiple Agents</h3>
+    <pre><code>docker run --rm -d --env-file .env --name agent1 merlin/agent:latest
+docker run --rm -d --env-file .env --name agent2 merlin/agent:latest
+</code></pre>
+    <h3>Common Docker Commands</h3>
+    <ul>
+      <li>List running containers: <code>docker ps</code></li>
+      <li>Stop a container: <code>docker stop <container_id></code></li>
+      <li>View logs: <code>docker logs <container_id></code></li>
+    </ul>
+    <h3>Troubleshooting</h3>
+    <ul>
+      <li>Ensure Docker is running.</li>
+      <li>Check <code>.env</code> is present and correct.</li>
+      <li>Use <code>docker logs</code> for debugging.</li>
+    </ul>
+    <h2 id="usage">Usage Examples</h2>
+    <h3>Basic Agent Task</h3>
+    <pre><code>from cua_sdk import ComputerAgent
+
+agent = ComputerAgent()
+result = agent.run_task("Open Notepad and type 'Hello, world!'")
+print(result)
+</code></pre>
+    <h3>Creating Multiple Agents</h3>
+    <pre><code>from cua_sdk import ComputerAgent
+
+agents = [ComputerAgent(name=f"Agent{i}") for i in range(3)]
+for agent in agents:
+    agent.run_task("Check system status")
+</code></pre>
+    <h3>Custom Configuration</h3>
+    <pre><code>from cua_sdk import ComputerAgent
+
+config = {
+    "AGENT_MODE": "batch",
+    "LOG_LEVEL": "DEBUG"
+}
+agent = ComputerAgent(name="BatchAgent", config=config)
+agent.run_task("Process data files in C:/data")
+</code></pre>
+    <h3>Using Docker for Isolation</h3>
+    <pre><code>docker build -t merlin/agent:latest -f cua_docker/Dockerfile .
+docker run --rm -it --env-file .env merlin/agent:latest
+</code></pre>
+    <h3>Advanced: Orchestrating Agents</h3>
+    <pre><code>from cua_sdk import ComputerAgent
+
+def orchestrate():
+    agent1 = ComputerAgent(name="WebScraper")
+    agent2 = ComputerAgent(name="DataProcessor")
+    data = agent1.run_task("Scrape data from example.com")
+    result = agent2.run_task(f"Process the following data: {data}")
+    print(result)
+
+orchestrate()
+</code></pre>
+    <h3>Error Handling</h3>
+    <pre><code>from cua_sdk import ComputerAgent
+
+agent = ComputerAgent()
+try:
+    agent.run_task("Open a non-existent application")
+except Exception as e:
+    print("Task failed:", e)
+</code></pre>
+    <h2 id="testing">Testing</h2>
+    <h3>Verify Installation</h3>
+    <pre><code>python -c "from cua_sdk import ComputerAgent; print('OK')"
+</code></pre>
+    <h3>Example Test Script</h3>
+    <pre><code>from cua_sdk import ComputerAgent
+
+def test_basic_task():
+    agent = ComputerAgent()
+    result = agent.run_task("Open Notepad and type 'Test successful!'")
+    print("Task result:", result)
+
+if __name__ == "__main__":
+    test_basic_task()
+</code></pre>
+    <h3>Using pytest (Optional)</h3>
+    <pre><code>pip install pytest
+</code></pre>
+    <pre><code>from cua_sdk import ComputerAgent
+
+def test_agent_runs():
+    agent = ComputerAgent()
+    result = agent.run_task("Echo 'pytest test'")
+    assert result is not None
+</code></pre>
+    <pre><code>pytest
+</code></pre>
+    <h3>Troubleshooting</h3>
+    <ul>
+      <li>Ensure your <code>.env</code> file is present and contains valid API keys.</li>
+      <li>Check Docker is running if using Docker-based agents.</li>
+      <li>Review error messages for missing dependencies or misconfigurations.</li>
+    </ul>
+    <h2 id="faq">FAQ</h2>
+    <h3>What can cua-sdk do?</h3>
+    <ul>
+      <li>Automate desktop and cloud tasks using intelligent agents.</li>
+      <li>Run multiple agents in parallel, each with its own configuration.</li>
+      <li>Integrate with OpenAI and other APIs for advanced capabilities.</li>
+      <li>Deploy agents in Docker containers for isolation and scalability.</li>
+      <li>Easily extend and customize agent behavior with Python.</li>
+    </ul>
+    <h3>What can't it do?</h3>
+    <ul>
+      <li>Merlin agents cannot perform tasks outside the permissions of the host system or Docker container.</li>
+      <li>Cannot bypass OS-level security restrictions.</li>
+      <li>Not designed for real-time or high-frequency trading, critical infrastructure, or safety-critical systems.</li>
+      <li>Does not provide a GUI (command-line and API only).</li>
+    </ul>
+    <h3>Do I need Docker to use Merlin?</h3>
+    <ul>
+      <li>No, Docker is optional. You can run agents directly on your host system.</li>
+      <li>Docker is recommended for isolation, reproducibility, and scaling.</li>
+    </ul>
+    <h3>How do I get an OpenAI API key?</h3>
+    <ul>
+      <li>Sign up at <a href="https://platform.openai.com/" target="_blank">OpenAI</a>.</li>
+      <li>Create an API key in your account dashboard.</li>
+      <li>Add it to your <code>.env</code> file as <code>OPENAI_API_KEY=your-key</code>.</li>
+    </ul>
+    <h3>My agent isn't working. What should I check?</h3>
+    <ul>
+      <li>Is your <code>.env</code> file present and correct?</li>
+      <li>Are all required dependencies installed?</li>
+      <li>Is Docker running (if using Docker)?</li>
+      <li>Check logs and error messages for details.</li>
+    </ul>
+    <h3>How do I contribute or report bugs?</h3>
+    <ul>
+      <li>See <a href="contributing.html">Contributing</a> for guidelines.</li>
+      <li>Open issues or pull requests on <a href="https://github.com/eliastsoukatos/computer_use" target="_blank">GitHub</a>.</li>
+    </ul>
+    <h3>Where can I find more examples?</h3>
+    <ul>
+      <li>See <a href="#usage">Usage Examples</a> and <a href="api-reference.html">API Reference</a>.</li>
+    </ul>
+    <h2 id="changelog">Changelog</h2>
+    <h3>[0.1.0] - Initial Release</h3>
+    <ul>
+      <li>First public release of Merlin AI Foundation SDK.</li>
+      <li>Core features:
+        <ul>
+          <li>Python SDK for creating and managing computer agents.</li>
+          <li>Multi-agent support.</li>
+          <li>Docker integration for agent isolation.</li>
+          <li>Configuration via <code>.env</code> and environment variables.</li>
+          <li>Example scripts and comprehensive documentation.</li>
         </ul>
       </li>
     </ul>
-  </div>
-  <div class="content">
-    <div class="content-header">
-      <h1>Core Concepts of Merlin AI</h1>
-    </div>
-
-    <section id="agent-definition">
-      <h2>What are AI Agents?</h2>
-      <p>In Merlin AI, agents are autonomous, intelligent entities capable of perceiving their environment, making decisions, and taking actions to achieve specific goals.</p>
-    </section>
-
-    <section id="agent-capabilities">
-      <h2>Agent Capabilities</h2>
-      <ul>
-        <li>Self-directed learning</li>
-        <li>Adaptive problem solving</li>
-        <li>Multi-task execution</li>
-        <li>Cross-platform integration</li>
-      </ul>
-    </section>
-
-    <section id="distributed-network">
-      <h2>Distributed Network</h2>
-      <p>Merlin's decentralized architecture allows agents to operate across multiple nodes, ensuring resilience, scalability, and reduced single points of failure.</p>
-    </section>
-
-    <section id="consensus-mechanisms">
-      <h2>Consensus Mechanisms</h2>
-      <p>Agents communicate and validate actions through sophisticated consensus protocols, ensuring reliable and trustworthy decision-making.</p>
-    </section>
-  </div>
-
-  <script>
-    // Same JavaScript as previous docs
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuItems = document.querySelectorAll('.sidebar-nav > li > a');
-      
-      menuItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          e.preventDefault();
-          
-          menuItems.forEach(mi => mi.classList.remove('active'));
-          item.classList.add('active');
-          
-          const submenu = item.nextElementSibling;
-          const isExpanded = item.classList.contains('expanded');
-          
-          document.querySelectorAll('.submenu').forEach(sm => sm.classList.remove('show'));
-          document.querySelectorAll('.sidebar-nav > li > a').forEach(a => a.classList.remove('expanded'));
-          
-          if (!isExpanded) {
-            submenu.classList.add('show');
-            item.classList.add('expanded');
-          }
-        });
-      });
-    });
-  </script>
+    <h3>[Unreleased]</h3>
+    <ul>
+      <li>Add new features and improvements here as development continues.</li>
+    </ul>
+    <p><em>For each new release, add a new section with the version number, date, and a summary of changes.</em></p>
+  </main>
 </body>
 </html>

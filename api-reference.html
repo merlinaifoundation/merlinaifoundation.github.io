@@ -6,126 +6,186 @@
   <title>API Reference - Merlin AI Foundation</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* Same CSS as previous docs */
     :root {
       --primary-color: #0c2340;
-      --secondary-color: #09203c;
-      --background-color: #f0f4f8;
+      --secondary-color: #4a90e2;
+      --background-color: #f7fafc;
       --text-color: #1a365d;
       --sidebar-bg: #f1f5f9;
       --sidebar-hover: #e2e8f0;
+      --radius: 16px;
     }
-    /* [Rest of previous CSS] */
-    pre {
-      background-color: #f4f4f4;
-      padding: 1rem;
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      display: flex;
+      min-height: 100vh;
+      background: var(--background-color);
+      margin: 0;
+    }
+    .sidebar {
+      width: 270px;
+      background-color: var(--sidebar-bg);
+      padding: 2rem 1rem;
+      border-right: 1px solid #e2e8f0;
+      overflow-y: auto;
+      min-height: 100vh;
+    }
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+    .sidebar-logo img {
+      width: 40px;
+      margin-right: 10px;
+    }
+    .sidebar-logo h2 {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      font-weight: 800;
+    }
+    .sidebar-nav {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar-nav li {
+      margin-bottom: 0.5rem;
+    }
+    .sidebar-nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 0.5rem 1rem;
+      display: block;
       border-radius: 8px;
+      transition: background-color 0.2s;
+      font-weight: 600;
+    }
+    .sidebar-nav a:hover, .sidebar-nav a.active {
+      background-color: var(--sidebar-hover);
+      color: var(--primary-color);
+    }
+    .content {
+      flex-grow: 1;
+      padding: 2.5rem 2rem;
+      background-color: white;
+      overflow-y: auto;
+      max-width: calc(100% - 270px);
+      min-height: 100vh;
+    }
+    .content h1, .content h2, .content h3 {
+      color: var(--primary-color);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+    .content h1 { font-size: 2.1rem; }
+    .content h2 { font-size: 1.4rem; }
+    .content h3 { font-size: 1.1rem; }
+    .content ul, .content ol {
+      margin-bottom: 1.2rem;
+      margin-left: 1.5rem;
+    }
+    .content pre, .content code {
+      background: #f4f4f4;
+      color: #0c2340;
+      border-radius: 8px;
+      padding: 0.5em 0.8em;
+      font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+      font-size: 1em;
       overflow-x: auto;
+    }
+    .content pre {
+      padding: 1em;
+      margin-bottom: 1.5em;
+    }
+    .content a {
+      color: var(--secondary-color);
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .content a:hover {
+      color: var(--primary-color);
+    }
+    @media (max-width: 900px) {
+      .sidebar { width: 100%; min-height: unset; border-right: none; border-bottom: 1px solid #e2e8f0; }
+      .content { max-width: 100%; padding: 1.2rem 0.5rem; }
+      body { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
+  <nav class="sidebar">
     <div class="sidebar-logo">
       <img src="logo.png" alt="Merlin AI Foundation">
-      <h2>Documentation</h2>
+      <h2>Docs</h2>
     </div>
     <ul class="sidebar-nav">
-      <li>
-        <a href="#core-classes" class="active">
-          Core Classes
-          <i class="fas fa-chevron-right toggle-icon"></i>
-        </a>
-        <ul class="submenu show">
-          <li><a href="#agent-class">Agent</a></li>
-          <li><a href="#network-class">Network</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#methods">
-          Methods
-          <i class="fas fa-chevron-right toggle-icon"></i>
-        </a>
-        <ul class="submenu">
-          <li><a href="#create-method">create()</a></li>
-          <li><a href="#process-method">process()</a></li>
-        </ul>
-      </li>
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="docs.html">Overview</a></li>
+      <li><a href="installation.html">Installation</a></li>
+      <li><a href="getting-started.html">Quickstart</a></li>
+      <li><a href="api-reference.html" class="active">API Reference</a></li>
+      <li><a href="core-concepts.html">Configuration</a></li>
+      <li><a href="core-concepts.html#docker">Docker Setup</a></li>
+      <li><a href="core-concepts.html#usage">Usage Examples</a></li>
+      <li><a href="core-concepts.html#testing">Testing</a></li>
+      <li><a href="core-concepts.html#faq">FAQ</a></li>
+      <li><a href="contributing.html">Contributing</a></li>
+      <li><a href="core-concepts.html#changelog">Changelog</a></li>
     </ul>
-  </div>
-  <div class="content">
-    <div class="content-header">
-      <h1>API Reference</h1>
-    </div>
-
-    <section id="agent-class">
-      <h2>Agent Class</h2>
-      <pre><code>
-class Agent:
-    def __init__(self, name: str, capabilities: List[str]):
-        """Initialize a new AI agent"""
-        pass
-
-    def create(self, config: Dict) -> Agent:
-        """Factory method to create an agent"""
-        pass
-      </code></pre>
-    </section>
-
-    <section id="network-class">
-      <h2>Network Class</h2>
-      <pre><code>
-class Network:
-    def __init__(self, nodes: List[Agent]):
-        """Initialize a distributed network of agents"""
-        pass
-
-    def connect(self, agent: Agent):
-        """Connect a new agent to the network"""
-        pass
-      </code></pre>
-    </section>
-
-    <section id="create-method">
-      <h2>create() Method</h2>
-      <p>Creates a new agent with specified capabilities and configuration.</p>
-      <pre><code>
-# Example usage
-agent = Agent.create({
-    'name': 'ResearchBot',
-    'capabilities': ['data_analysis', 'web_search']
-})
-      </code></pre>
-    </section>
-  </div>
-
-  <script>
-    // Same JavaScript as previous docs
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuItems = document.querySelectorAll('.sidebar-nav > li > a');
-      
-      menuItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          e.preventDefault();
-          
-          menuItems.forEach(mi => mi.classList.remove('active'));
-          item.classList.add('active');
-          
-          const submenu = item.nextElementSibling;
-          const isExpanded = item.classList.contains('expanded');
-          
-          document.querySelectorAll('.submenu').forEach(sm => sm.classList.remove('show'));
-          document.querySelectorAll('.sidebar-nav > li > a').forEach(a => a.classList.remove('expanded'));
-          
-          if (!isExpanded) {
-            submenu.classList.add('show');
-            item.classList.add('expanded');
-          }
-        });
-      });
-    });
-  </script>
+  </nav>
+  <main class="content">
+    <h1>API Reference</h1>
+    <p>This section documents all public classes, methods, and functions provided by the CUA SDK.</p>
+    <h2>ComputerAgent</h2>
+    <p><strong>Class:</strong> <code>ComputerAgent</code></p>
+    <p>The main interface for creating and controlling agents.</p>
+    <h3>Constructor</h3>
+    <pre><code>ComputerAgent(name: str = "Merlin", mode: str = "interactive", config: dict = None)
+</code></pre>
+    <ul>
+      <li><strong>name</strong> (str): Name of the agent (default: "Merlin")</li>
+      <li><strong>mode</strong> (str): Operation mode, e.g., "interactive" or "batch"</li>
+      <li><strong>config</strong> (dict): Optional configuration dictionary</li>
+    </ul>
+    <h3>Methods</h3>
+    <h4><code>run_task(task: str) -> Any</code></h4>
+    <p>Runs a task using the agent.</p>
+    <ul>
+      <li><strong>task</strong> (str): Description of the task to perform (e.g., "Open Notepad and type 'Hello'")</li>
+      <li><strong>Returns:</strong> Result of the task (type may vary)</li>
+    </ul>
+    <pre><code>agent = ComputerAgent()
+result = agent.run_task("Open Notepad and type 'Hello'")
+</code></pre>
+    <h4><code>stop() -> None</code></h4>
+    <p>Stops the agent and cleans up resources.</p>
+    <pre><code>agent.stop()
+</code></pre>
+    <hr>
+    <h2>Docker Utilities</h2>
+    <p>If using Docker, the following scripts/utilities are available:</p>
+    <ul>
+      <li><strong>Dockerfile:</strong> Builds the agent image.</li>
+      <li><strong>cua_docker/cua_docker_loop.py:</strong> Main entrypoint for running agents in Docker.</li>
+      <li><strong>cua_docker/config.py:</strong> Handles Docker-specific configuration.</li>
+    </ul>
+    <h2>Configuration Utilities</h2>
+    <ul>
+      <li><strong>load_dotenv()</strong>: Loads environment variables from <code>.env</code>.</li>
+      <li><strong>os.getenv("VAR_NAME")</strong>: Accesses environment variables in code.</li>
+    </ul>
+    <h2>Additional Functions</h2>
+    <p>Document any other public functions or utilities here as your SDK evolves.</p>
+    <hr>
+    <p>For more usage examples, see <a href="core-concepts.html#usage">Usage Examples</a>.</p>
+  </main>
 </body>
 </html>

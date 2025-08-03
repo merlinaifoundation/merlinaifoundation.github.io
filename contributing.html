@@ -6,124 +6,186 @@
   <title>Contributing - Merlin AI Foundation</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* Same CSS as previous docs */
     :root {
       --primary-color: #0c2340;
-      --secondary-color: #09203c;
-      --background-color: #f0f4f8;
+      --secondary-color: #4a90e2;
+      --background-color: #f7fafc;
       --text-color: #1a365d;
       --sidebar-bg: #f1f5f9;
       --sidebar-hover: #e2e8f0;
+      --radius: 16px;
     }
-    /* [Rest of previous CSS] */
-    pre {
-      background-color: #f4f4f4;
-      padding: 1rem;
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      display: flex;
+      min-height: 100vh;
+      background: var(--background-color);
+      margin: 0;
+    }
+    .sidebar {
+      width: 270px;
+      background-color: var(--sidebar-bg);
+      padding: 2rem 1rem;
+      border-right: 1px solid #e2e8f0;
+      overflow-y: auto;
+      min-height: 100vh;
+    }
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+    .sidebar-logo img {
+      width: 40px;
+      margin-right: 10px;
+    }
+    .sidebar-logo h2 {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      font-weight: 800;
+    }
+    .sidebar-nav {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar-nav li {
+      margin-bottom: 0.5rem;
+    }
+    .sidebar-nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 0.5rem 1rem;
+      display: block;
       border-radius: 8px;
+      transition: background-color 0.2s;
+      font-weight: 600;
+    }
+    .sidebar-nav a:hover, .sidebar-nav a.active {
+      background-color: var(--sidebar-hover);
+      color: var(--primary-color);
+    }
+    .content {
+      flex-grow: 1;
+      padding: 2.5rem 2rem;
+      background-color: white;
+      overflow-y: auto;
+      max-width: calc(100% - 270px);
+      min-height: 100vh;
+    }
+    .content h1, .content h2, .content h3 {
+      color: var(--primary-color);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+    .content h1 { font-size: 2.1rem; }
+    .content h2 { font-size: 1.4rem; }
+    .content h3 { font-size: 1.1rem; }
+    .content ul, .content ol {
+      margin-bottom: 1.2rem;
+      margin-left: 1.5rem;
+    }
+    .content pre, .content code {
+      background: #f4f4f4;
+      color: #0c2340;
+      border-radius: 8px;
+      padding: 0.5em 0.8em;
+      font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+      font-size: 1em;
       overflow-x: auto;
+    }
+    .content pre {
+      padding: 1em;
+      margin-bottom: 1.5em;
+    }
+    .content a {
+      color: var(--secondary-color);
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .content a:hover {
+      color: var(--primary-color);
+    }
+    @media (max-width: 900px) {
+      .sidebar { width: 100%; min-height: unset; border-right: none; border-bottom: 1px solid #e2e8f0; }
+      .content { max-width: 100%; padding: 1.2rem 0.5rem; }
+      body { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
+  <nav class="sidebar">
     <div class="sidebar-logo">
       <img src="logo.png" alt="Merlin AI Foundation">
-      <h2>Documentation</h2>
+      <h2>Docs</h2>
     </div>
     <ul class="sidebar-nav">
-      <li>
-        <a href="#development-setup" class="active">
-          Development Setup
-          <i class="fas fa-chevron-right toggle-icon"></i>
-        </a>
-        <ul class="submenu show">
-          <li><a href="#local-setup">Local Environment</a></li>
-          <li><a href="#dependencies">Dependencies</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#submit-pr">
-          Submit a PR
-          <i class="fas fa-chevron-right toggle-icon"></i>
-        </a>
-        <ul class="submenu">
-          <li><a href="#pr-guidelines">PR Guidelines</a></li>
-          <li><a href="#review-process">Review Process</a></li>
-        </ul>
-      </li>
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="docs.html">Overview</a></li>
+      <li><a href="installation.html">Installation</a></li>
+      <li><a href="getting-started.html">Quickstart</a></li>
+      <li><a href="api-reference.html">API Reference</a></li>
+      <li><a href="core-concepts.html">Configuration</a></li>
+      <li><a href="core-concepts.html#docker">Docker Setup</a></li>
+      <li><a href="core-concepts.html#usage">Usage Examples</a></li>
+      <li><a href="core-concepts.html#testing">Testing</a></li>
+      <li><a href="core-concepts.html#faq">FAQ</a></li>
+      <li><a href="contributing.html" class="active">Contributing</a></li>
+      <li><a href="core-concepts.html#changelog">Changelog</a></li>
     </ul>
-  </div>
-  <div class="content">
-    <div class="content-header">
-      <h1>Contributing to Merlin AI</h1>
-    </div>
-
-    <section id="local-setup">
-      <h2>Local Development Setup</h2>
-      <pre><code>
-# Clone the repository
-git clone https://github.com/merlinaifoundation/core.git
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate
-
-# Install development dependencies
-pip install -r requirements-dev.txt
-      </code></pre>
-    </section>
-
-    <section id="dependencies">
-      <h2>Managing Dependencies</h2>
-      <p>We use Poetry for dependency management. Ensure you have Poetry installed:</p>
-      <pre><code>
-# Install dependencies
-poetry install
-
-# Add a new dependency
-poetry add new-library
-      </code></pre>
-    </section>
-
-    <section id="pr-guidelines">
-      <h2>Pull Request Guidelines</h2>
-      <ul>
-        <li>Fork the repository</li>
-        <li>Create a feature branch</li>
-        <li>Write tests for new features</li>
-        <li>Ensure all tests pass</li>
-        <li>Update documentation</li>
-      </ul>
-    </section>
-  </div>
-
-  <script>
-    // Same JavaScript as previous docs
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuItems = document.querySelectorAll('.sidebar-nav > li > a');
-      
-      menuItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          e.preventDefault();
-          
-          menuItems.forEach(mi => mi.classList.remove('active'));
-          item.classList.add('active');
-          
-          const submenu = item.nextElementSibling;
-          const isExpanded = item.classList.contains('expanded');
-          
-          document.querySelectorAll('.submenu').forEach(sm => sm.classList.remove('show'));
-          document.querySelectorAll('.sidebar-nav > li > a').forEach(a => a.classList.remove('expanded'));
-          
-          if (!isExpanded) {
-            submenu.classList.add('show');
-            item.classList.add('expanded');
-          }
-        });
-      });
-    });
-  </script>
+  </nav>
+  <main class="content">
+    <h1>Contributing</h1>
+    <p>Thank you for your interest in contributing to cua-sdk! We welcome contributions of all kinds—code, documentation, bug reports, and feature requests.</p>
+    <h2>How to Contribute</h2>
+    <ol>
+      <li><strong>Fork the repository</strong> on GitHub.</li>
+      <li><strong>Clone your fork</strong> to your local machine:
+        <pre><code>git clone https://github.com/your-username/computer_use.git
+</code></pre>
+      </li>
+      <li><strong>Create a new branch</strong> for your feature or fix:
+        <pre><code>git checkout -b my-feature
+</code></pre>
+      </li>
+      <li><strong>Make your changes</strong> and add tests if applicable.</li>
+      <li><strong>Commit and push</strong> your changes:
+        <pre><code>git add .
+git commit -m "Describe your change"
+git push origin my-feature
+</code></pre>
+      </li>
+      <li><strong>Open a pull request</strong> on GitHub and describe your changes.</li>
+    </ol>
+    <h2>Reporting Issues</h2>
+    <ul>
+      <li>Search <a href="https://github.com/eliastsoukatos/computer_use/issues" target="_blank">existing issues</a> before opening a new one.</li>
+      <li>Include as much detail as possible: steps to reproduce, environment, logs, etc.</li>
+    </ul>
+    <h2>Code Style</h2>
+    <ul>
+      <li>Follow PEP8 for Python code.</li>
+      <li>Write clear, concise commit messages.</li>
+      <li>Add docstrings and comments where helpful.</li>
+    </ul>
+    <h2>Documentation</h2>
+    <ul>
+      <li>Improve or add documentation in the <code>docs/</code> folder.</li>
+      <li>Fix typos, clarify instructions, or add new sections.</li>
+    </ul>
+    <h2>Community</h2>
+    <ul>
+      <li>Be respectful and constructive in all interactions.</li>
+      <li>Join discussions and help others in the community.</li>
+    </ul>
+    <p>Thank you for helping make Merlin AI Foundation better!</p>
+  </main>
 </body>
 </html>

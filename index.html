@@ -3,179 +3,504 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Merlin AI Foundation - Coming Soon</title>
+  <title>Merlin AI Foundation</title>
   <link rel="icon" href="logo.png" type="image/png">
-  <link rel="shortcut icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #0c2340;
-      --secondary-color: #09203c;
-      --background-color: #f0f4f8;
-      --text-color: #1a365d;
-      --accent-color: #4a5568;
+      --primary: #0c2340;
+      --secondary: #4a90e2;
+      --accent: #00e6d8;
+      --bg: #f7fafc;
+      --dark-bg: #10131a;
+      --text: #1a202c;
+      --muted: #718096;
+      --card-bg: rgba(255,255,255,0.85);
+      --glass: rgba(255,255,255,0.7);
+      --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      --radius: 18px;
     }
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      font-family: 'Inter', 'Space Grotesk', Arial, sans-serif;
+      background: linear-gradient(135deg, #e0e7ff 0%, #f7fafc 100%);
+      color: var(--text);
+      min-height: 100vh;
+      scroll-behavior: smooth;
     }
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      background-color: var(--background-color);
-      color: var(--text-color);
+    .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-      line-height: 1.6;
-      padding: 1rem;
-    }
-    .container {
+      justify-content: center;
+      min-height: 90vh;
+      background: linear-gradient(120deg, #0c2340 0%, #4a90e2 100%);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
       text-align: center;
-      padding: 2.5rem;
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      max-width: 650px;
-      width: 100%;
-      transition: transform 0.3s ease;
-      margin-bottom: 2rem;
     }
-    .container:hover {
-      transform: translateY(-5px);
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -120px; left: -120px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #00e6d8 0%, transparent 70%);
+      opacity: 0.18;
+      z-index: 0;
     }
-    .logo {
-      max-width: 220px;
-      width: 100%;
-      height: auto;
-      margin: 0 auto 1.5rem;
+    .hero-logo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+      z-index: 1;
+      display: inline-block;
+      padding: 18px;
+    }
+    .hero-title {
+      font-family: 'Space Grotesk', 'Inter', Arial, sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -1px;
+      z-index: 1;
+    }
+    .hero-subtitle {
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      color: #e0e7ff;
+      z-index: 1;
+    }
+    .hero-desc {
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 2.2rem;
+      color: #c3e0f7;
+      z-index: 1;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      z-index: 1;
+      margin-bottom: 2.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6em;
+      background: var(--accent);
+      color: #0c2340;
+      font-weight: 700;
+      font-size: 1.08rem;
+      padding: 0.85em 2.1em;
+      border: none;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+    .btn:hover, .btn:focus {
+      background: #fff;
+      color: var(--primary);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+    }
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4.5rem 1.5rem 3.5rem 1.5rem;
+      position: relative;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', Arial, sans-serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+      text-align: center;
+      letter-spacing: -0.5px;
+    }
+    .section-desc {
+      font-size: 1.15rem;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 2.2rem;
+      font-weight: 400;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.1rem 1.5rem 1.5rem 1.5rem;
+      text-align: left;
+      transition: transform 0.18s, box-shadow 0.18s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 12px 32px 0 rgba(31, 38, 135, 0.18);
+    }
+    .feature-icon {
+      font-size: 2.1rem;
+      color: var(--secondary);
+      margin-bottom: 0.7rem;
       display: block;
     }
-    h1 {
-      color: var(--primary-color);
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
+    .feature-title {
+      font-size: 1.18rem;
       font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
     }
-    .subtitle {
-      font-size: 1.1rem;
-      color: var(--accent-color);
-      max-width: 90%;
-      margin: 0 auto 1rem;
-      font-weight: 300;
+    .feature-desc {
+      color: var(--text);
+      font-size: 1.02rem;
+      font-weight: 400;
     }
-    .coming-soon {
-      margin-top: 1.5rem;
-      font-style: italic;
-      color: #718096;
-      font-weight: 300;
-    }
-    .button-container {
-      margin-top: 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .button {
-      text-decoration: none;
-      background-color: var(--primary-color);
-      color: #fff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .button:hover {
-      background-color: var(--secondary-color);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-    }
-    .button i {
-      font-size: 1.2rem;
-    }
-    .video-container {
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .video-wrapper {
+    .code-block {
+      background: #10131a;
+      color: #e0e7ff;
+      border-radius: var(--radius);
+      padding: 1.5rem 1.2rem;
+      font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+      font-size: 1.08rem;
+      margin: 2rem auto 2.5rem auto;
+      max-width: 600px;
+      overflow-x: auto;
+      box-shadow: 0 4px 18px rgba(16,19,26,0.13);
       position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
     }
-    .video-wrapper iframe {
+    .code-block::before {
+      content: "Python";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0.7rem;
+      right: 1.2rem;
+      color: #00e6d8;
+      font-size: 0.95rem;
+      font-weight: 600;
+      opacity: 0.7;
     }
-    @media (max-width: 768px) {
-      .container {
-        padding: 2rem 1.5rem;
-        margin: 1rem 0;
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+    .step-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.2rem;
+      min-width: 220px;
+      max-width: 320px;
+      flex: 1 1 220px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .step-card:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 8px 24px 0 rgba(31, 38, 135, 0.13);
+    }
+    .step-number {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1.1rem;
+      border-radius: 50%;
+      width: 2.1em;
+      height: 2.1em;
+      line-height: 2.1em;
+      margin-bottom: 0.7em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .cta-section {
+      background: linear-gradient(90deg, #0c2340 0%, #4a90e2 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      margin: 3rem auto 2.5rem auto;
+      max-width: 900px;
+      position: relative;
+    }
+    .cta-section .btn {
+      background: #fff;
+      color: var(--primary);
+      margin: 0 0.7em;
+    }
+    .cta-section .btn:hover {
+      background: var(--accent);
+      color: #0c2340;
+    }
+    .about-section {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      margin: 3rem auto 2.5rem auto;
+      max-width: 900px;
+    }
+    .footer {
+      background: #0c2340;
+      color: #e0e7ff;
+      text-align: center;
+      padding: 1.5rem 0 1rem 0;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+      margin-top: 2.5rem;
+    }
+    .footer a {
+      color: #00e6d8;
+      text-decoration: none;
+      margin: 0 0.5em;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .footer a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+    @media (max-width: 900px) {
+      .section, .cta-section, .about-section {
+        padding: 2.5rem 0.7rem;
       }
-      .logo {
-        max-width: 180px;
+      .hero-title {
+        font-size: 2.1rem;
       }
-      h1 {
-        font-size: 1.8rem;
+      .section-title {
+        font-size: 1.5rem;
       }
-      .subtitle {
-        font-size: 1rem;
+    }
+    @media (max-width: 600px) {
+      .hero {
+        min-height: 70vh;
+        padding: 2.5rem 0.5rem 1.5rem 0.5rem;
       }
-      .button {
-        padding: 0.625rem 1.25rem;
-        font-size: 0.9rem;
+      .hero-title {
+        font-size: 1.3rem;
       }
-      .button i {
-        font-size: 1rem;
+      .hero-logo {
+        width: 70px;
+        height: 70px;
+        padding: 10px;
       }
+      .section, .cta-section, .about-section {
+        padding: 1.2rem 0.2rem;
+      }
+      .features-grid, .steps {
+        gap: 1rem;
+      }
+      .code-block {
+        font-size: 0.95rem;
+        padding: 1rem 0.5rem;
+      }
+    }
+    /* Animations */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+    }
+    [data-animate].animated {
+      opacity: 1;
+      transform: none;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="logo.png" alt="Merlin AI Foundation Logo" class="logo">
-    <h1>Merlin AI Foundation</h1>
-    <p class="subtitle">Empowering open, decentralized AI agents that think, talk, and act for you.</p>
-    <p>We are working to launch our official website.</p>
-    <p class="coming-soon">Coming soon!</p>
-    <div class="button-container">
-      <a class="button" href="Merlin AI Foundation - White Paper 1.0.pdf" download>
-        <i class="fas fa-file-pdf"></i> Download White Paper
-      </a>
-      <a class="button" href="https://github.com/merlinaifoundation" target="_blank">
-        <i class="fab fa-github"></i> GitHub
-      </a>
-      <a class="button" href="https://discord.gg/cQrvPBFkqD" target="_blank">
-        <i class="fab fa-discord"></i> Discord
-      </a>
-      <a class="button" href="getting-started.html">
-        <i class="fas fa-book"></i> Documentation
-      </a>
+  <!-- Hero Section -->
+  <section class="hero" id="top">
+    <img src="logo.png" alt="Merlin AI Foundation Logo" class="hero-logo" data-animate>
+    <h1 class="hero-title" data-animate>Merlin AI Foundation</h1>
+<h2 class="hero-subtitle" data-animate>Empowering the Next Generation of Autonomous Computer Agents</h2>
+<p style="font-size:1.08rem; color:#00e6d8; font-weight:700; margin-bottom:1.1rem;" data-animate>
+  <span style="background:rgba(0,230,216,0.10);padding:0.3em 0.9em;border-radius:1em;display:inline-block;">
+    Introducing our first product: <span style="color:#0c2340;">cua-sdk</span> – the open-source Python SDK for intelligent agents.
+  </span>
+</p>
+    <p class="hero-desc" data-animate>
+      Build, deploy, and orchestrate intelligent agents with ease.<br>
+      Open-source tools for creating, managing, and scaling AI-powered computer automation—securely, flexibly, and at lightning speed.
+    </p>
+<div class="hero-actions" data-animate>
+      <a href="#get-started" class="btn"><i class="fas fa-rocket"></i> Get Started</a>
+      <a href="docs.html" class="btn"><i class="fas fa-book"></i> Documentation</a>
+      <a href="https://github.com/merlinaifoundation" class="btn" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
     </div>
-  </div>
-  <div class="video-container">
-    <div class="video-wrapper">
-      <iframe 
-        src="https://www.youtube.com/embed/b1hR3-ZtjxM" 
-        title="Merlin AI Foundation Overview" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
+  </section>
+
+  <!-- What is Merlin AI Foundation -->
+  <section class="section" id="what-is-merlin">
+    <h2 class="section-title" data-animate>What is Merlin AI Foundation?</h2>
+    <p class="section-desc" data-animate>
+      Merlin AI Foundation is dedicated to making advanced computer automation accessible to everyone. Our flagship Python SDK and Docker-based platform let you create, control, and scale multiple intelligent agents—no complex setup, no steep learning curve.
+    </p>
+  </section>
+
+  <!-- Why Merlin? -->
+  <section class="section" id="why-merlin">
+    <h2 class="section-title" data-animate>Why Merlin?</h2>
+    <div class="features-grid">
+      <div class="feature-card" data-animate>
+        <span class="feature-icon"><i class="fas fa-bolt"></i></span>
+        <div class="feature-title">Effortless Integration</div>
+        <div class="feature-desc">Install with a single command. Start automating in minutes.</div>
+      </div>
+      <div class="feature-card" data-animate>
+        <span class="feature-icon"><i class="fas fa-users-cog"></i></span>
+        <div class="feature-title">Multi-Agent Architecture</div>
+        <div class="feature-desc">Launch and manage as many agents as you need—each with its own role, memory, and capabilities.</div>
+      </div>
+      <div class="feature-card" data-animate>
+        <span class="feature-icon"><i class="fab fa-docker"></i></span>
+        <div class="feature-title">Docker-Powered Scalability</div>
+        <div class="feature-desc">Deploy agents in isolated, reproducible Docker containers. Run locally or in the cloud with zero hassle.</div>
+      </div>
+      <div class="feature-card" data-animate>
+        <span class="feature-icon"><i class="fas fa-code-branch"></i></span>
+        <div class="feature-title">Open Source & Extensible</div>
+        <div class="feature-desc">100% open source. Build your own agents, extend functionality, and contribute to the future of AI automation.</div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Key Features -->
+  <section class="section" id="key-features">
+    <h2 class="section-title" data-animate>Key Features</h2>
+    <div class="features-grid">
+      <div class="feature-card" data-animate>
+        <span class="feature-icon"><i class="fab fa-python"></i></span>
+        <div class="feature-title">Simple Python SDK</div>
+        <div class="feature-desc">Import, instantiate, and command agents with just a few lines of code.</div>
+      </div>
+      <div class="feature-card" data-animate>
+        <span class="feature-icon"><i class="fas fa-layer-group"></i></span>
+        <div class="feature-title">Multiple Agents, Infinite Possibilities</div>
+        <div class="feature-desc">Create specialized agents for different tasks—data processing, web automation, system monitoring, and more.</div>
+      </div>
+      <div class="feature-card" data-animate>
+        <span class="feature-icon"><i class="fab fa-docker"></i></span>
+        <div class="feature-title">Seamless Docker Integration</div>
+        <div class="feature-desc">Each agent runs in its own Docker container for maximum security and reproducibility. One command to build, launch, and manage your agent fleet.</div>
+      </div>
+      <div class="feature-card" data-animate>
+        <span class="feature-icon"><i class="fas fa-laptop-code"></i></span>
+        <div class="feature-title">Cross-Platform</div>
+        <div class="feature-desc">Works on Windows, macOS, and Linux.</div>
+      </div>
+      <div class="feature-card" data-animate>
+        <span class="feature-icon"><i class="fas fa-user-astronaut"></i></span>
+        <div class="feature-title">Developer Friendly</div>
+        <div class="feature-desc">Comprehensive documentation, active community, and real-world examples to get you started fast.</div>
+      </div>
+    </div>
+    <div class="code-block" data-animate>
+<pre><code>from cua_sdk import ComputerAgent
+agent = ComputerAgent()
+agent.run_task("Open Excel and generate a report")</code></pre>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section" id="how-it-works">
+    <h2 class="section-title" data-animate>How It Works</h2>
+    <div class="steps">
+      <div class="step-card" data-animate>
+        <div class="step-number">1</div>
+        <div class="feature-title">Install the SDK</div>
+        <div class="feature-desc"><code>pip install cua-sdk</code></div>
+      </div>
+      <div class="step-card" data-animate>
+        <div class="step-number">2</div>
+        <div class="feature-title">Spin Up Agents</div>
+        <div class="feature-desc">Use our Python API or Docker CLI to launch as many agents as you need.</div>
+      </div>
+      <div class="step-card" data-animate>
+        <div class="step-number">3</div>
+        <div class="feature-title">Automate Anything</div>
+        <div class="feature-desc">From desktop tasks to cloud workflows, Merlin agents can do it all.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Started Today -->
+  <section class="cta-section" id="get-started" data-animate>
+    <h2 class="section-title" style="color:#fff;">Get Started Today</h2>
+    <p style="font-size:1.18rem; color:#e0e7ff; margin-bottom:2rem;">
+      Ready to supercharge your productivity with AI-powered automation?<br>
+      Check out our Quickstart Guide, explore the Documentation, or Join the Community.
+    </p>
+    <a href="https://pypi.org/project/cua-sdk/" class="btn" target="_blank"><i class="fas fa-download"></i> Download SDK</a>
+    <a href="https://github.com/merlinaifoundation" class="btn" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+    <a href="mailto:info@merlinaifoundation.org" class="btn"><i class="fas fa-envelope"></i> Contact Us</a>
+  </section>
+
+  <!-- About Merlin AI Foundation -->
+  <section class="about-section" id="about" data-animate>
+    <h2 class="section-title">About Merlin AI Foundation</h2>
+    <p style="font-size:1.13rem; color:var(--text); max-width:700px; margin:0 auto;">
+      We believe in a future where anyone can harness the power of AI to automate the mundane and unlock new possibilities.<br>
+      Join us on our mission to democratize intelligent automation.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div>
+      <strong>merlinaifoundation.org</strong> &nbsp;|&nbsp; Open Source &nbsp;|&nbsp; Community Driven &nbsp;|&nbsp; Future Focused
+    </div>
+    <div style="margin-top:0.7em;">
+      <a href="#top">Home</a> &bull;
+      <a href="docs.html">Documentation</a> &bull;
+      <a href="contributing.html">Contributing</a> &bull;
+      <a href="https://discord.gg/cQrvPBFkqD" target="_blank">Discord</a>
+    </div>
+    <div style="margin-top:0.7em; font-size:0.98em; color:#b3c7e6;">
+      &copy; 2025 Merlin AI Foundation. All rights reserved.
+    </div>
+  </footer>
+  <script>
+    // Animate on scroll
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('[data-animate]');
+      const windowHeight = window.innerHeight;
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < windowHeight - 60) {
+          el.classList.add('animated');
+        }
+      });
+    }
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
 </body>
 </html>

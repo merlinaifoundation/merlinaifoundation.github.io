@@ -1,0 +1,20 @@
+# Ignore Markdown documentation files
+docs/*.md
+
+# Ignore OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+
+# Ignore node_modules and Python cache (if ever present)
+node_modules/
+__pycache__/
+*.pyc
+
+# Ignore log files
+*.log
+
+# Ignore backup files
+*~
