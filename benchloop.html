@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BenchLoop Documentation - Merlin AI Foundation</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0c2340;
+      --secondary-color: #4a90e2;
+      --background-color: #f7fafc;
+      --text-color: #1a365d;
+      --sidebar-bg: #f1f5f9;
+      --sidebar-hover: #e2e8f0;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      display: flex;
+      min-height: 100vh;
+      background: var(--background-color);
+      margin: 0;
+    }
+    .sidebar {
+      width: 270px;
+      background-color: var(--sidebar-bg);
+      padding: 2rem 1rem;
+      border-right: 1px solid #e2e8f0;
+      overflow-y: auto;
+      min-height: 100vh;
+    }
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+    .sidebar-logo img {
+      width: 40px;
+      margin-right: 10px;
+    }
+    .sidebar-logo h2 {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      font-weight: 800;
+    }
+    .sidebar-nav {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar-nav li {
+      margin-bottom: 0.5rem;
+    }
+    .sidebar-nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 0.5rem 1rem;
+      display: block;
+      border-radius: 8px;
+      transition: background-color 0.2s;
+      font-weight: 600;
+    }
+    .sidebar-nav a:hover, .sidebar-nav a.active {
+      background-color: var(--sidebar-hover);
+      color: var(--primary-color);
+    }
+    .content {
+      flex-grow: 1;
+      padding: 2.5rem 2rem;
+      background-color: white;
+      overflow-y: auto;
+      max-width: calc(100% - 270px);
+      min-height: 100vh;
+    }
+    .content h1, .content h2, .content h3 {
+      color: var(--primary-color);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+    .content h1 { font-size: 2.1rem; }
+    .content h2 { font-size: 1.4rem; }
+    .content h3 { font-size: 1.1rem; }
+    .content ul, .content ol {
+      margin-bottom: 1.2rem;
+      margin-left: 1.5rem;
+    }
+    .content pre, .content code {
+      background: #f4f4f4;
+      color: #0c2340;
+      border-radius: 8px;
+      padding: 0.5em 0.8em;
+      font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+      font-size: 1em;
+      overflow-x: auto;
+    }
+    .content pre {
+      padding: 1em;
+      margin-bottom: 1.5em;
+    }
+    .content a {
+      color: var(--secondary-color);
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .content a:hover {
+      color: var(--primary-color);
+    }
+    @media (max-width: 900px) {
+      .sidebar { width: 100%; min-height: unset; border-right: none; border-bottom: 1px solid #e2e8f0; }
+      .content { max-width: 100%; padding: 1.2rem 0.5rem; }
+      body { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <img src="logo.png" alt="Merlin AI Foundation">
+      <h2>BenchLoop Docs</h2>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="docs.html">All Libraries</a></li>
+      <li><a href="benchloop.html" class="active">BenchLoop</a></li>
+      <li><a href="docs.html">cua-sdk</a></li>
+    </ul>
+  </nav>
+  <main class="content">
+    <h1>BenchLoop Documentation</h1>
+    <p><strong>BenchLoop</strong> is a Python library for managing, processing, and benchmarking datasets in SQLite databases, designed for AI pipelines, LLM prompt engineering, and dataset curation.</p>
+    <h2 id="table-of-contents">Table of Contents</h2>
+    <ol>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#installation">Installation</a></li>
+      <li><a href="#project-structure">Project Structure</a></li>
+      <li><a href="#quickstart">Quickstart</a></li>
+      <li><a href="#api-reference">API Reference</a></li>
+      <li><a href="#advanced-usage">Advanced Usage</a></li>
+      <li><a href="#best-practices">Best Practices</a></li>
+      <li><a href="#troubleshooting">Troubleshooting</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ol>
+
+    <h2 id="introduction">Introduction</h2>
+    <p>
+      <strong>BenchLoop</strong> is a Python library for managing, processing, and benchmarking datasets in SQLite databases, designed for AI pipelines, LLM prompt engineering, and dataset curation. It enables you to:
+      <ul>
+        <li>Load and update structured data in SQLite.</li>
+        <li>Run prompts row-by-row, substitute variables, and store LLM responses.</li>
+        <li>Filter, export, and benchmark datasets with ease.</li>
+        <li>Build reproducible, scalable data loops for AI/ML workflows.</li>
+      </ul>
+    </p>
+
+    <h2 id="installation">Installation</h2>
+    <p><strong>Requirements:</strong></p>
+    <ul>
+      <li>Python 3.7+</li>
+      <li>Standard libraries: <code>sqlite3</code>, <code>csv</code>, <code>json</code>, <code>os</code>, <code>difflib</code></li>
+      <li>For LLM calls: <code>openai</code> (install via <code>pip install openai</code>)</li>
+    </ul>
+    <p><strong>Install BenchLoop:</strong></p>
+    <pre><code>pip install benchloop
+pip install openai  # For LLM prompt execution
+</code></pre>
+
+    <h2 id="project-structure">Project Structure</h2>
+    <pre><code>benchloop/
+├── __init__.py
+├── loader.py
+├── db_manager.py
+├── prompt_runner.py
+├── dataset_exporter.py
+├── benchmarker.py
+docs/
+└── benchloop.md
+main.py
+</code></pre>
+    <ul>
+      <li><strong>loader.py</strong>: Data ingestion (CSV, JSON, dicts) into SQLite.</li>
+      <li><strong>db_manager.py</strong>: Core DB operations and flexible filtering.</li>
+      <li><strong>prompt_runner.py</strong>: Row-wise prompt execution and LLM integration.</li>
+      <li><strong>dataset_exporter.py</strong>: Export datasets for training (JSONL, etc.).</li>
+      <li><strong>benchmarker.py</strong>: Benchmarking AI responses vs. ground truth.</li>
+      <li><strong>main.py</strong>: Example/test script for all features.</li>
+    </ul>
+
+    <h2 id="quickstart">Quickstart</h2>
+    <pre><code>from benchloop.loader import load_table
+from benchloop.prompt_runner import execute_prompt_on_table
+from benchloop.dataset_exporter import export_training_dataset
+from benchloop.benchmarker import benchmark_responses
+
+# 1. Load data
+load_table(
+    table_name="products",
+    data_source=[{"id": 1, "name": "Zapato", "price": "50"}],
+    db_path="mydb.sqlite"
+)
+
+# 2. Run prompts and store LLM responses
+execute_prompt_on_table(
+    table_name="products",
+    prompt_template="Describe the product {name} that costs {price} dollars.",
+    columns_variables=["name", "price"],
+    result_mapping={"response": "llm_response"},
+    db_path="mydb.sqlite",
+    model="gpt-4o",
+    api_key="sk-...",
+)
+
+# 3. Export dataset for training
+export_training_dataset(
+    table_name="products",
+    prompt_template="Describe the product {name} that costs {price} dollars.",
+    response_column="llm_response",
+    output_file="dataset.jsonl",
+    db_path="mydb.sqlite",
+    format="messages"
+)
+
+# 4. Benchmark responses
+benchmark_responses(
+    table_name="products",
+    column_ai="llm_response",
+    column_ground_truth="ground_truth",
+    db_path="mydb.sqlite",
+    benchmark_tag=None
+)
+</code></pre>
+
+    <h2 id="api-reference">API Reference</h2>
+    <h3 id="load_table">load_table</h3>
+    <p><strong>Purpose:</strong> Load structured data into an SQLite table from CSV, JSON, or a list of dicts.<br>
+    <strong>Location:</strong> <code>benchloop/loader.py</code></p>
+    <pre><code>load_table(table_name: str, data_source: Union[str, List[Dict]], db_path: str)
+</code></pre>
+    <ul>
+      <li><strong>table_name</strong>: Name of the table.</li>
+      <li><strong>data_source</strong>: Path to CSV/JSON file or a list of dicts.</li>
+      <li><strong>db_path</strong>: Path to the SQLite database.</li>
+    </ul>
+    <p><strong>Features:</strong></p>
+    <ul>
+      <li>Auto-creates table and columns as needed.</li>
+      <li>Adds new columns on the fly.</li>
+      <li>Prevents duplicate insertions (if <code>id</code> is present).</li>
+    </ul>
+    <p><strong>Example:</strong></p>
+    <pre><code>load_table("mytable", "data.csv", "mydb.sqlite")
+</code></pre>
+
+    <h3 id="filter_rows">filter_rows</h3>
+    <p><strong>Purpose:</strong> Flexible filtering of rows with support for operators and include/exclude modes.<br>
+    <strong>Location:</strong> <code>benchloop/db_manager.py</code></p>
+    <pre><code>DBManager.filter_rows(table_name: str, filters: dict, mode: str, db_path: str) -> list
+</code></pre>
+    <ul>
+      <li><strong>table_name</strong>: Table to filter.</li>
+      <li><strong>filters</strong>: Dict of conditions (supports <code>=</code>, <code>!=</code>, <code>></code>, <code><</code>, <code>contains</code>, <code>startswith</code>, <code>IN</code>).</li>
+      <li><strong>mode</strong>: <code>'include'</code> or <code>'exclude'</code>.</li>
+      <li><strong>db_path</strong>: Path to the SQLite database.</li>
+    </ul>
+    <p><strong>Example:</strong></p>
+    <pre><code>rows = DBManager.filter_rows("mytable", {"price": {">": 100}}, "include", "mydb.sqlite")
+</code></pre>
+
+    <h3 id="execute_prompt_on_table">execute_prompt_on_table</h3>
+    <p><strong>Purpose:</strong> Run prompts row-by-row, substitute variables, call LLM, and store responses.<br>
+    <strong>Location:</strong> <code>benchloop/prompt_runner.py</code></p>
+    <pre><code>execute_prompt_on_table(
+    table_name: str,
+    prompt_template: str,
+    columns_variables: List[str],
+    result_mapping: Dict[str, str],
+    db_path: str,
+    filters: Optional[Dict] = None,
+    limit: Optional[int] = None,
+    model: str = "gpt-4o",
+    api_key: str = ""
+)
+</code></pre>
+    <ul>
+      <li><strong>table_name</strong>: Table to process.</li>
+      <li><strong>prompt_template</strong>: Prompt with <code>{}</code> placeholders.</li>
+      <li><strong>columns_variables</strong>: List of columns to substitute.</li>
+      <li><strong>result_mapping</strong>: Dict mapping LLM response fields to DB columns.</li>
+      <li><strong>db_path</strong>: Path to the SQLite database.</li>
+      <li><strong>filters</strong>: Optional row filters.</li>
+      <li><strong>limit</strong>: Max rows to process.</li>
+      <li><strong>model</strong>: LLM model name.</li>
+      <li><strong>api_key</strong>: OpenAI API key.</li>
+    </ul>
+    <p><strong>Example:</strong></p>
+    <pre><code>execute_prompt_on_table(
+    "products",
+    "Describe {name}",
+    ["name"],
+    {"response": "llm_response"},
+    "mydb.sqlite",
+    model="gpt-4o",
+    api_key="sk-..."
+)
+</code></pre>
+
+    <h3 id="export_training_dataset">export_training_dataset</h3>
+    <p><strong>Purpose:</strong> Export a JSONL dataset for training, with prompt/response pairs.<br>
+    <strong>Location:</strong> <code>benchloop/dataset_exporter.py</code></p>
+    <pre><code>export_training_dataset(
+    table_name: str,
+    prompt_template: str,
+    response_column: str,
+    output_file: str,
+    db_path: str,
+    filters: Optional[Dict] = None,
+    format: str = "messages"
+)
+</code></pre>
+    <ul>
+      <li><strong>table_name</strong>: Table to export from.</li>
+      <li><strong>prompt_template</strong>: Prompt template with placeholders.</li>
+      <li><strong>response_column</strong>: Column with LLM response.</li>
+      <li><strong>output_file</strong>: Output JSONL file path.</li>
+      <li><strong>db_path</strong>: Path to the SQLite database.</li>
+      <li><strong>filters</strong>: Optional row filters.</li>
+      <li><strong>format</strong>: "messages" (OpenAI style) or "input/output".</li>
+    </ul>
+    <p><strong>Example:</strong></p>
+    <pre><code>export_training_dataset(
+    "products",
+    "Describe {name}",
+    "llm_response",
+    "dataset.jsonl",
+    "mydb.sqlite"
+)
+</code></pre>
+
+    <h3 id="benchmark_responses">benchmark_responses</h3>
+    <p><strong>Purpose:</strong> Compare AI responses vs. ground truth and compute metrics.<br>
+    <strong>Location:</strong> <code>benchloop/benchmarker.py</code></p>
+    <pre><code>benchmark_responses(
+    table_name: str,
+    column_ai: str,
+    column_ground_truth: str,
+    db_path: str,
+    benchmark_tag: Optional[str] = None,
+    benchmark_column: str = "benchmark",
+    similarity_threshold: float = 0.9
+) -> Dict
+</code></pre>
+    <ul>
+      <li><strong>table_name</strong>: Table to benchmark.</li>
+      <li><strong>column_ai</strong>: Column with AI responses.</li>
+      <li><strong>column_ground_truth</strong>: Column with ground truth.</li>
+      <li><strong>db_path</strong>: Path to the SQLite database.</li>
+      <li><strong>benchmark_tag</strong>: Only include rows with this tag.</li>
+      <li><strong>benchmark_column</strong>: Name of the tag column.</li>
+      <li><strong>similarity_threshold</strong>: Fuzzy match threshold.</li>
+    </ul>
+    <p><strong>Example:</strong></p>
+    <pre><code>metrics = benchmark_responses(
+    "products",
+    "llm_response",
+    "ground_truth",
+    "mydb.sqlite",
+    benchmark_tag="PrecioTest"
+)
+</code></pre>
+
+    <h2 id="advanced-usage">Advanced Usage</h2>
+    <ul>
+      <li><strong>Custom Prompt Templates:</strong> Use any columns in your prompt template.</li>
+      <li><strong>Chaining:</strong> Use filter_rows to select rows, then run prompts or export.</li>
+      <li><strong>Multiple Benchmarks:</strong> Use the <code>benchmark</code> column to tag and compare different subsets.</li>
+      <li><strong>Export Formats:</strong> Use <code>format="input/output"</code> for simple datasets, or <code>"messages"</code> for OpenAI-style.</li>
+    </ul>
+
+    <h2 id="best-practices">Best Practices</h2>
+    <ul>
+      <li>Always use unique <code>id</code> fields for deduplication.</li>
+      <li>Use filters to avoid re-processing already-annotated rows.</li>
+      <li>Store ground truth in a dedicated column for benchmarking.</li>
+      <li>Version your datasets and keep track of prompt templates used.</li>
+    </ul>
+
+    <h2 id="troubleshooting">Troubleshooting</h2>
+    <ul>
+      <li><strong>No rows exported?</strong> Check your filters and that the response column is populated.</li>
+      <li><strong>Prompt errors?</strong> Ensure all variables in the template exist as columns.</li>
+      <li><strong>Benchmark returns 0 rows?</strong> Check the benchmark tag and that ground truth is present.</li>
+    </ul>
+
+    <h2 id="faq">FAQ</h2>
+    <ul>
+      <li><strong>Q: Can I use this with any LLM provider?</strong><br>
+        A: The prompt runner is designed for OpenAI, but you can adapt it for other APIs.
+      </li>
+      <li><strong>Q: How do I add new columns?</strong><br>
+        A: Just include new keys in your data dicts or CSV/JSON files; columns are added automatically.
+      </li>
+      <li><strong>Q: Can I export only a subset of rows?</strong><br>
+        A: Yes, use the <code>filters</code> parameter in <code>export_training_dataset</code>.
+      </li>
+      <li><strong>Q: How do I benchmark only a specific subset?</strong><br>
+        A: Use the <code>benchmark_tag</code> parameter in <code>benchmark_responses</code>.
+      </li>
+    </ul>
+    <hr>
+    <p><strong>BenchLoop</strong> is designed to make dataset curation, prompt engineering, and benchmarking fast, reproducible, and robust.<br>
+    For more examples, see <code>main.py</code> or open an issue on the project repository.</p>
+  </main>
+</body>
+</html>
